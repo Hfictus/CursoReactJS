@@ -1,0 +1,14 @@
+
+
+
+.navlink-container {
+    padding: 20px 20px 21px 20px;
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-font-secondary);
+    font-size: 16px;
+}
+
+.productsCard {
+    font-size: 16px;
+    color: var(--color-font-secondary);
+}

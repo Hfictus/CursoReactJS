@@ -1,13 +1,11 @@
 
 
-
-
-export default function Home() {
+export default function About() {
     return(
         <main>
             <section>
                 <div className="container mt20 size">
-                    <h1>Bem-vindos!</h1>
+                    <h1>Sobre nós</h1>
                 </div>
             </section>
         </main>        

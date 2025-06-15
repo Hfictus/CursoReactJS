@@ -36,14 +36,18 @@
 }
 
 
+.link-highlight-or-access {
+    font-weight: 700;
+}
+
+.size {
+    font-size: 24px;
+}
+
+
 /*
 a, a:hover {
     text-decoration: none;
     color: unset;
 }
-
-.mb20 {
-    margin-bottom: 20px;
-}
-
 */
