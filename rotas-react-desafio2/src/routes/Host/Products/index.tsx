@@ -3,6 +3,7 @@
 
 
 
+import ProductsNavLink from '../../../components/ProductsNavLink';
 import './styles.css';
 
 export default function Products() {
@@ -10,17 +11,7 @@ export default function Products() {
         <main>
             <section>
                 <div className="container navlink-container mt20">
-                    <nav className="dflex ai">
-                        <div className="link-highlight-or-access mr20">
-                            Computadores
-                        </div>
-                        <div className="mr20">
-                            Eletrônicos
-                        </div>
-                        <div className="mr20">
-                            Livros
-                        </div>
-                    </nav>
+                    <ProductsNavLink />
                 </div>
                 <div className="container mt20 productsCard">
                     <div>Computador 1</div>
