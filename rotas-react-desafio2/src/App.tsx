@@ -2,7 +2,7 @@
 
 
 
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Host from "./routes/Host"
 import Home from "./routes/Host/Home"
 import Products from "./routes/Host/Products"
@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Host />} >
-          <Route index element={<Home />} />
+          <Route index element={<Navigate to="/home" />} />
           <Route path="home" element={<Home />} />
           <Route path="products" element={<Products />}/>
           <Route path="about" element={<About />}/>

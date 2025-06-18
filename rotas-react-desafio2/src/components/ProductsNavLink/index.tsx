@@ -6,7 +6,7 @@
 export default function ProductsNavLink() {
     return(
         <nav className="dflex ai">
-            <div className="link-highlight-or-access mr20">
+            <div className="link-accessed mr20">
                 Computadores
             </div>
             <div className="mr20">

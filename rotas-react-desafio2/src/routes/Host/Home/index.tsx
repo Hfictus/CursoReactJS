@@ -1,13 +1,14 @@
 
 
 
+import TitlesCard from "../../../components/TitlesCard";
 
 export default function Home() {
     return(
         <main>
             <section>
-                <div className="container mt20 size">
-                    <h1>Bem-vindos!</h1>
+                <div className="mt20">
+                    <TitlesCard title="Bem-vindos!" />
                 </div>
             </section>
         </main>        
