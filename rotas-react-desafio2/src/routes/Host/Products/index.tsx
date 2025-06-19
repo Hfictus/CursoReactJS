@@ -3,6 +3,7 @@
 
 
 
+import { Outlet } from 'react-router-dom';
 import ProductsNavLink from '../../../components/ProductsNavLink';
 import './styles.css';
 
@@ -15,9 +16,7 @@ export default function Products() {
                         <ProductsNavLink />
                     </div>
                     <div className="mt20 productsCard">
-                        <div>Computador 1</div>
-                        <div>Computador 2</div>
-                        <div>Computador 3</div>
+                        <Outlet />
                     </div>
                 </div>
             </section>    
