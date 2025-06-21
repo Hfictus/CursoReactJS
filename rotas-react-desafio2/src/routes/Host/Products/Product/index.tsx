@@ -4,6 +4,8 @@
 
 import { useParams } from "react-router-dom";
 import { getProduct } from '../../../../data';
+import './styles.css';
+
 
 export default function Product() {
     
@@ -16,9 +18,9 @@ export default function Product() {
             {
                 product &&
                 <main>
-                    <div>
-                        {product.names.map((item, index) => (
-                            <p key={index}>{item.name}</p>
+                    <div className="productsCard">
+                        {product.names.map((itemOfNames) => (
+                            <p key={itemOfNames.id}>{itemOfNames.name}</p>
                         ))}
                     </div>
                 </main>

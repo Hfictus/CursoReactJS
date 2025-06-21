@@ -1,7 +1,7 @@
 
 
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getProducts } from "../../data";
 
 export default function ProductsNavLink() {
@@ -12,13 +12,17 @@ export default function ProductsNavLink() {
         <nav className="dflex ai">
             {
                 productsCategories.map((prodCateg) => (
-                    <Link
-                        className="mr20"
-                        to={`/products/${prodCateg.category}`}
-                        key={prodCateg.category}
-                    >
-                        {prodCateg.category}                        
-                    </Link>
+                    <div className="mr20">
+                        <NavLink
+                            className={
+                                ({isActive}) => {if(isActive) return "link-accessed"}
+                            }
+                            to={`/products/${prodCateg.url}`}
+                            key={prodCateg.category}
+                        >
+                            {prodCateg.category}                        
+                        </NavLink>
+                    </div>
                 ))
             }
         </nav>

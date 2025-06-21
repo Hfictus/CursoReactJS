@@ -10,6 +10,7 @@ import About from "./routes/Host/About";
 import NotFound from "./routes/Host/NotFound";
 import Product from "./routes/Host/Products/Product";
 
+
 function App() {
   
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route index element={<Navigate to="/home" />} />
           <Route path="home" element={<Home />} />
           <Route path="products" element={<Products />}>
+            <Route index element={<Navigate to={"/products/computers"} /> } />
             <Route path=":productId" element={<Product />} />
           </Route>
           <Route path="about" element={<About />}/>
