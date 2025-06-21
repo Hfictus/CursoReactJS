@@ -3,22 +3,21 @@
 
 
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import Host from "./routes/Host"
-import Home from "./routes/Host/Home"
-import Products from "./routes/Host/Products"
-import About from "./routes/Host/About";
-import NotFound from "./routes/Host/NotFound";
-import Product from "./routes/Host/Products/Product";
-
+import Home from "./routes/Home";
+import HomeBody from "./routes/Home/HomeBody";
+import Products from "./routes/Home/Products";
+import Product from "./routes/Home/Products/Product";
+import About from "./routes/Home/About";
+import NotFound from "./routes/Home/NotFound";
 
 function App() {
   
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Host />} >
+        <Route path="/" element={<Home />} >
           <Route index element={<Navigate to="/home" />} />
-          <Route path="home" element={<Home />} />
+          <Route path="home" element={<HomeBody />} />
           <Route path="products" element={<Products />}>
             <Route index element={<Navigate to={"/products/computers"} /> } />
             <Route path=":productId" element={<Product />} />

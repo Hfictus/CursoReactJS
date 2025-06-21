@@ -22,7 +22,7 @@ const products = [
         ]
     },
     {
-        category: "Livors",
+        category: "Livros",
         url: "books",
         names: [
             {id: 7, name: "Livro 1"},
@@ -39,4 +39,3 @@ export function getProducts() {
 export function getProduct(url : string | undefined) {
     return products.find((product) => product.url === url)
 }
-
