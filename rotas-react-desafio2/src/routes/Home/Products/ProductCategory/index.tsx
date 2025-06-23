@@ -5,9 +5,10 @@
 import { useParams } from "react-router-dom";
 import { getProduct } from '../../../../data';
 import './styles.css';
+import NotFound from "../../NotFound";
 
 
-export default function Product() {
+export default function ProductCategory() {
     
     const params = useParams();
     
@@ -16,7 +17,7 @@ export default function Product() {
     return(
         <>
             {
-                product &&
+                product ?
                 <main>
                     <div className="productsCard">
                         {product.names.map((itemOfNames) => (
@@ -24,6 +25,8 @@ export default function Product() {
                         ))}
                     </div>
                 </main>
+                :
+                <NotFound />
             }
         </>
     );
