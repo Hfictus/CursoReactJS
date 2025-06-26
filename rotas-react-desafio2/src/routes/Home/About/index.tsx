@@ -1,5 +1,8 @@
-import TitlesCard from "../../../components/TitlesCard";
 
+
+
+
+import TitlesCard from "../../../components/TitlesCard";
 
 export default function About() {
     return(

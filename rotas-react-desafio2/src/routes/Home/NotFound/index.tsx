@@ -1,6 +1,8 @@
+
+
+
+
 import TitlesCard from "../../../components/TitlesCard";
-
-
 
 export default function NotFound() {
     return(
