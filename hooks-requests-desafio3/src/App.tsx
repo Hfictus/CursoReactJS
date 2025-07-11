@@ -1,8 +1,22 @@
 
+
+
+
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Home from "./routes/Home"
+import HomeBody from "./routes/Home/HomeBody"
+
 function App() {
   
   return (
-      <h1>Project created and clean</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}>
+            <Route index element={<HomeBody />} />
+            <Route path="home" element={<HomeBody />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     )
 }
 

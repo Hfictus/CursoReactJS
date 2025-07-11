@@ -1,0 +1,79 @@
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wdth,wght@75..100,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto";
+}
+
+:root {
+    --color-bg-primary: #1890FF;
+    --color-bg-secondary: #FFFFFF;
+    --color-bg-tertiary: #E6F7FF;
+    
+    --color-bg-container-primary: #E6F7FF;
+    --color-bg-container-secondary: #F5F5F5;
+    --color-bg-container-tertiary: #FFFFFF;
+
+    --color-bg-gradient-primary: linear-gradient(180deg, #FFFFFF, #F7F9FA);
+    
+    --color-bg-search-bar: #FFFFFF;
+
+    --color-bg-button-primary: #1890FF;
+    --color-bg-button-secondary: #FFFFFF;
+    
+    --color-text-button-primary: #FFFFFF;
+    --color-text-button-secondary: #FFFFFF;
+
+    --color-border-primary: #D9D9D9;
+    
+    --color-text-primary: #FFFFFF;
+    
+    --color-text-home-primary: #000000;
+    --color-text-home-secondary: #7E7E7E;
+
+    --color-text-form-primary: #262626;
+
+    --color-text-form-search-bar-primary: #BFBFBF;
+    --color-text-form-search-bar-secondary: #5C5858;
+
+    --color-text-card-primary: #1890FF;
+    --color-text-card-secondary: #737373;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-size: 16px;
+}
+
+.buttons {
+    width: 75.75px;
+    height: 30px;
+    font-size: 12px;
+    background-color: var(--color-bg-button-primary);
+    color: var(--color-bg-button-secondary);
+    font-weight: 400;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rhd-container {
+    width: 100%;
+}
+
+
+@media(min-width: 576px) {
+    .buttons {
+        width: 101px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+}

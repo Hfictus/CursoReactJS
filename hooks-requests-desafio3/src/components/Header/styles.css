@@ -1,0 +1,25 @@
+
+
+
+
+header {
+    height: 62px;
+    background-color: var(--color-bg-primary);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+@media(min-width: 576px) {
+    header {
+        padding-left: 41px;
+        padding-right: 41px;
+    }
+}
