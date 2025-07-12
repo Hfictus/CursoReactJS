@@ -3,20 +3,23 @@
 
 
 
+import { Link } from "react-router-dom";
 import StartButton from "../../../components/StartButton";
 import "./styles.css";
 
 export default function HomeBody() {
     return(
-        <main>
+        <main className="bg-color-home-page">
             <section id="page-home-section">
-                <div className="rhd-container">
+                <div>
                     <div className="start-page-titles">
                         <h2>Desafio Github API</h2>
                         <h3>DevSuperior - Escola de programação</h3>
                     </div>
-                    <div>
-                        <StartButton text="Começar" />
+                    <div className="dflex">
+                        <Link to="/form-page">
+                            <StartButton text="Começar" />
+                        </Link>
                     </div>
                 </div>
             </section>

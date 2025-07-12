@@ -1,9 +1,11 @@
 
 
 
-body {
+.bg-color-home-page {
+    height: 100vh;
     background-image: var(--color-bg-gradient-primary);
 }
+
 
 #page-home-section {
     padding: 27px 20px;

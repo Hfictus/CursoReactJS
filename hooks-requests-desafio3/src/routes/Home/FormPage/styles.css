@@ -1,0 +1,20 @@
+
+
+
+.bg-color-form-page {
+    height: 100vh;
+    background-color: var(--color-bg-secondary);
+}
+
+
+
+#form-page-section {
+    padding: 54px 41px;
+}
+
+
+@media(min-width: 576px) {
+    #form-page-section {
+        padding: 54px 90px;
+    }
+}
