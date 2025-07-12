@@ -74,6 +74,10 @@ a, a:hover {
     text-decoration: none;
 }
 
+.mb {
+    margin-bottom: 0;
+}
+
 @media(min-width: 576px) {
     .buttons {
         width: 101px;

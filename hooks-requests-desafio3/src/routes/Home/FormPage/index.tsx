@@ -12,7 +12,7 @@ export default function FormPage() {
         <main className="bg-color-form-page">
             <section id="form-page-section">
                 <form>
-                    <h2>Encontre um perfil Github</h2>
+                    <h2 className="form-page-title mb">Encontre um perfil Github</h2>
                     <UserSearchBar />
                     <UserSearchButton />
                 </form>
