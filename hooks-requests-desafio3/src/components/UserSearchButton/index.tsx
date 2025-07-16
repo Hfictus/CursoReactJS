@@ -5,7 +5,10 @@
 export default function UserSearchButton() {
     return(
         <div>
-            <button className="buttons">
+            <button
+                type="submit"
+                className="buttons"
+            >
                 Encontrar
             </button>
         </div>

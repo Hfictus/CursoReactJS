@@ -2,10 +2,32 @@
 
 
 
-export default function UserSearchBar() {
+
+import { type ChangeEvent } from "react";
+
+type UserSearchBarProps = {
+    name: string;
+    value: string;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
+}
+
+export default function UserSearchBar({ 
+    name, 
+    value, 
+    onChange, 
+    placeholder 
+}: UserSearchBarProps) {
     return(
         <div>
-            <input type="text" placeholder="Usuário Github" />
+            <input 
+                name={name}
+                value={value}
+                type="text"
+                placeholder={placeholder}
+                onChange={onChange}
+            />
         </div>
     );
 }
+
