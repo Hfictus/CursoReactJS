@@ -3,19 +3,17 @@
 
 
 
-
-
 import { useState } from "react";
 import "./styles.css";
 
 type FormData = {
-    userName: string;
+    loginUser: string;
 }
 
 export default function FormPage() {
     
     const [formData, setFormData] = useState<FormData>({
-        userName: ""
+        loginUser: ""
     });
 
     function handleInputChange(event : React.ChangeEvent<HTMLInputElement>) {
@@ -26,7 +24,7 @@ export default function FormPage() {
 
     function handleFormSubmit(event : React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        console.log("Nome digitado no input: ", formData.userName);
+        console.log("Nome digitado no input: ", formData.loginUser);
     }
 
     return(
@@ -37,7 +35,7 @@ export default function FormPage() {
                     <div>
                         <input
                             name="userName"
-                            value={formData.userName}
+                            value={formData.loginUser}
                             type="text"
                             placeholder="Usuário Github"
                             onChange={handleInputChange}
