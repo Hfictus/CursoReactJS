@@ -34,7 +34,7 @@ export default function FormPage() {
                     <h2 className="form-page-title mb">Encontre um perfil Github</h2>
                     <div>
                         <input
-                            name="userName"
+                            name="loginUser"
                             value={formData.loginUser}
                             type="text"
                             placeholder="Usuário Github"
