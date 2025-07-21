@@ -3,18 +3,49 @@
 
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
+import * as userDataService from "../../../services/user-data-service";
+import type { UserDataDTO } from "../../../models/user-data";
+import UserDataCard from "../../../components/UserDataCard";
+import UserSearchError from "../../../components/UserSearchError";
+
 
 type FormData = {
-    loginUser: string;
+    firstName: string;
 }
 
 export default function FormPage() {
+        
+    const [hasSearched, setHasSearched] = useState<boolean>(false);
+    
+    const [hasError, setHasError] = useState<boolean>(false);
+
+    const [userLog, setUserLog] = useState<string>();
     
     const [formData, setFormData] = useState<FormData>({
-        loginUser: ""
+        firstName: ""
     });
+    
+    const [userData, setUserData] = useState<UserDataDTO>();
+
+
+    useEffect(() => {
+        if(userLog) {
+            userDataService.findByLogin(userLog)
+            .then(response => {
+                console.log(response.data);
+                setUserData(response.data);
+                setHasError(false);
+            })
+            .catch(error => {
+                console.log("Status: ", error.response.data.status);
+                setUserData(undefined);
+                setHasError(true);
+            })
+        }
+    }, [userLog]);
+
 
     function handleInputChange(event : React.ChangeEvent<HTMLInputElement>) {
         const name = event.target.name;
@@ -24,7 +55,10 @@ export default function FormPage() {
 
     function handleFormSubmit(event : React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        console.log("Nome digitado no input: ", formData.loginUser);
+        setUserLog(formData.firstName);
+        setHasSearched(true);
+
+        console.log("Nome digitado no input: ", formData.firstName);
     }
 
     return(
@@ -34,8 +68,8 @@ export default function FormPage() {
                     <h2 className="form-page-title mb">Encontre um perfil Github</h2>
                     <div>
                         <input
-                            name="userName"
-                            value={formData.loginUser}
+                            name="firstName"
+                            value={formData.firstName}
                             type="text"
                             placeholder="Usuário Github"
                             onChange={handleInputChange}
@@ -49,6 +83,13 @@ export default function FormPage() {
                             Encontrar
                         </button>
                     </div>
+                    {   
+                        hasSearched && (
+                            userData 
+                            ? <UserDataCard key={userData.login} userDataCard={userData} />
+                            : <UserSearchError />
+                        )
+                    }
                 </form>
             </section>
         </main>

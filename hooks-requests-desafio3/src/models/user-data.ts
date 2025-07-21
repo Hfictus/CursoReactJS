@@ -8,6 +8,6 @@ export type UserDataDTO = {
     name: string;
     location: string;
     followers: number;
-    avatarUrl: string;
-
+    avatar_url: string;
+    url: string;
 }
