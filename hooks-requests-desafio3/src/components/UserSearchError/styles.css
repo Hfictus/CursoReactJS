@@ -1,0 +1,25 @@
+
+.error-message {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text-form-primary);
+}
+
+@media(min-width: 576px) {
+    .error-message {
+        font-size: 1.8rem;
+    }
+}
+
+@media(min-width: 992px) {
+    .error-message {
+        font-size: 2rem;
+    }
+}
+
+
+@media(min-width: 1200px) {
+    .error-message {
+        font-size: 2.2rem;
+    }
+}

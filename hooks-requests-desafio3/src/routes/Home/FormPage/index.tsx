@@ -65,7 +65,7 @@ export default function FormPage() {
         <main className="bg-color-form-page">
             <section id="form-page-section">
                 <form onSubmit={handleFormSubmit}>
-                    <h2 className="form-page-title mb">Encontre um perfil Github</h2>
+                    <h2 className="form-page-title pb">Encontre um perfil Github</h2>
                     <div>
                         <input
                             name="firstName"
@@ -83,14 +83,14 @@ export default function FormPage() {
                             Encontrar
                         </button>
                     </div>
-                    {   
+                </form>
+                {   
                         hasSearched && (
                             userData 
                             ? <UserDataCard key={userData.login} userDataCard={userData} />
                             : <UserSearchError />
                         )
                     }
-                </form>
             </section>
         </main>
     );

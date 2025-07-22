@@ -54,3 +54,9 @@
         font-size: 1.5rem;
     }
 }
+
+@media(min-width: 992px) {
+    .start-page-titles {
+        margin-bottom: 27px;
+    }
+}

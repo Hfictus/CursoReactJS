@@ -1,6 +1,8 @@
 
 
 
+import "./styles.css";
+
 export default function UserSearchError() {
     return(
         <div className="error-message">
