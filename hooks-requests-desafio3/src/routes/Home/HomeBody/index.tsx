@@ -4,7 +4,6 @@
 
 
 import { Link } from "react-router-dom";
-import StartButton from "../../../components/StartButton";
 import "./styles.css";
 
 export default function HomeBody() {
@@ -17,8 +16,11 @@ export default function HomeBody() {
                         <h3>DevSuperior - Escola de programação</h3>
                     </div>
                     <div className="dflex">
-                        <Link to="/form-page">
-                            <StartButton text="Começar" />
+                        <Link 
+                            to="/form-page"
+                            className="buttons"
+                            >
+                            Começar
                         </Link>
                     </div>
                 </div>
