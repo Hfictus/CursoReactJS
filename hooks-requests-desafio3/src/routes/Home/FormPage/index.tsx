@@ -34,12 +34,10 @@ export default function FormPage() {
         if(userLog) {
             userDataService.findByLogin(userLog)
             .then(response => {
-                console.log(response.data);
                 setUserData(response.data);
                 setHasError(false);
             })
             .catch(error => {
-                console.log("Status: ", error.response.data.status);
                 setUserData(undefined);
                 setHasError(true);
             })
@@ -57,8 +55,6 @@ export default function FormPage() {
         event.preventDefault();
         setUserLog(formData.firstName);
         setHasSearched(true);
-
-        console.log("Nome digitado no input: ", formData.firstName);
     }
 
     return(
