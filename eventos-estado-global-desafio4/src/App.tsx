@@ -1,9 +1,18 @@
 
 
+
+import Header from "./components/Header"
+import ListingBody from "./components/ListingBody"
+
 function App() {
 
   return (
-    <h1>Project created, clean</h1>
+    <>
+      <Header />
+      <main>
+        <ListingBody />
+      </main>
+    </>
   )
 }
 
