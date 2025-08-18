@@ -1,7 +1,9 @@
 
 
-
-
+.listing-container {
+    background-color: var(--color-bg-tertiary);
+    padding: 10px 20px;
+}
 
 .product-card {
     background-color: var(--color-bg-tertiary);
