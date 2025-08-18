@@ -16,8 +16,10 @@
     --color-bg-tertiary: #FFFFFF;
 
     --color-button-bg-primary: #55BC04;
+    
 
-    --color-border-primary: #55BC04;
+    --color-border-primary: #C2C2C2;
+    --color-border-secondary: #55BC04;
 
     --color-text-primary: #FFFFFF;
     --color-text-secondary: #6F6F6F
@@ -53,8 +55,14 @@ body {
 }
 
 
-/*d-block > column
-.d-block {
-    display: column;
+.mb20 {
+    margin-bottom: 20px;
 }
-*/
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}

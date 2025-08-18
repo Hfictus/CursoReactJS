@@ -7,3 +7,8 @@
     height: 100vh;
     padding: 20px 10px;
 }
+
+.listing-container {
+    background-color: var(--color-bg-tertiary);
+    padding: 10px 20px;
+}
