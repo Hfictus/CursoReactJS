@@ -8,7 +8,7 @@ import "./styles.css";
 
 export default function ListingBody() {
     return(
-        <section id="listing-body-section">
+        <section>
             <Filter />
             <Listing />
         </section>

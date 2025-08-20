@@ -1,10 +1,8 @@
 
 
-
-
-#listing-body-section {
+body {
     background-color: var(--color-bg-secondary);
-    height: 100vh;
+    height: 100%;
     padding: 20px 10px;
 }
 
