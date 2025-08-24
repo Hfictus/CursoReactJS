@@ -1,19 +1,72 @@
 
 
 
+import { useState } from "react";
 import "./styles.css";
+//import * as productService from "../../services/product-service"
 
-export default function Filter() {
+type FormData = {
+    minFormData?: number;
+    maxFormData?: number;
+}
+
+type FilteringData = {
+    onFilter: (min: number, max: number) => void;
+}
+
+
+export default function Filter({ onFilter } : FilteringData) {
+      
+    const [formData, setFormData] = useState<FormData>({});
+    
+    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const value = event.target.value;
+        const name = event.target.name;
+        setFormData({...formData, [name]: value});
+    }
+   
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+    
+    }
+
+    function handleClick() {
+        
+        const min = Number(formData.minFormData) || 0;
+                
+        const max = formData.maxFormData
+            ? formData.maxFormData
+            : Number.MAX_VALUE;
+
+        if(onFilter && (min <= max)) {
+            onFilter(
+                min, max);
+        }
+        
+    }
+
     return(
         <div className="eegd4-container mb20">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <input type="text" placeholder="Preço mínimo" />
+                    <input
+                        name="minFormData"
+                        value={formData.minFormData || ""}
+                        type="text" 
+                        placeholder="Preço mínimo"
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div>
-                    <input type="text" placeholder="Preço máximo" />
+                    <input 
+                        name="maxFormData"
+                        value={formData.maxFormData || ""}
+                        type="text"
+                        placeholder="Preço máximo"
+                        onChange={handleInputChange}
+                    />
                 </div>
-                <button type="submit">Filtrar</button>
+                <button onClick={handleClick}>Filtrar</button>
             </form>
         </div>
     );
