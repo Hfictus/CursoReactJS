@@ -1,13 +1,17 @@
 
 
 
-import * as productService from "../../services/product-service"
+
+import type { ProductDTO } from "../../models/product";
 import "./styles.css";
 
-export default function Listing() {
-    
-    const products = productService.findByPrice(0, Number.MAX_VALUE);
-     
+
+type Props = {
+    products: ProductDTO[];
+}
+
+export default function Listing({ products }: Props) {
+         
     return(
         <div className="eegd4-container listing-container">
             {

@@ -7,7 +7,7 @@ export default function ProductIcon() {
         
     return(
         <div className="d-flex">
-            <div>13</div>
+            <div>#</div>
             <div><span>produto(s)</span></div>
         </div>
     );
