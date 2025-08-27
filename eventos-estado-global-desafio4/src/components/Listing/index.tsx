@@ -5,13 +5,12 @@
 import type { ProductDTO } from "../../models/product";
 import "./styles.css";
 
-
 type Props = {
     products: ProductDTO[];
 }
 
 export default function Listing({ products }: Props) {
-         
+    
     return(
         <div className="eegd4-container listing-container">
             {
