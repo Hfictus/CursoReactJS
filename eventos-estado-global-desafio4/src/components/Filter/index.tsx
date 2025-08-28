@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import "./styles.css";
-//import * as productService from "../../services/product-service"
 
 type FormData = {
     minFormData?: number;
@@ -39,6 +38,9 @@ export default function Filter({ onFilter } : FilteringData) {
             : Number.MAX_VALUE;
 
         if(onFilter && (min <= max)) {
+            console.log("Filter: \n");
+            console.log("Min: ", min);
+            console.log("Max: ", max);
             onFilter(
                 min, max);
         }

@@ -20,6 +20,7 @@ export default function ListingBody() {
     const { setContextProductCount } = useContext(ContextProductCount);
 
     setContextProductCount(products.length);
+    console.log("Valor no cabeçalho a partir de ListingBody: ", products.length)
 
     function handleFilter(min: number, max: number) {
         const prods = productService.findByPrice(min, max);
