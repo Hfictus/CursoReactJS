@@ -40,6 +40,9 @@ export default function ProductListing() {
         name: ""
     });
     
+    const [reload, setReload] = useState(0);
+
+
     function handleSearch(searchText: string) {
         setProducts([]);
         setQueryParams( {...queryParams, page: 0, name: searchText} );
@@ -52,7 +55,7 @@ export default function ProductListing() {
                 setProducts(products.concat(nextPage));
                 setIsLastPage(response.data.last);
             });
-    }, [ queryParams.page ]);
+    }, [ queryParams.page, reload ]);
     
     
     function handleNextPageClick() {
@@ -67,9 +70,6 @@ export default function ProductListing() {
     }
 
     function handleDeleteClick(productId: number) {
-        if(queryParams.page === 0) {
-            setQueryParams({...queryParams, page: -1 });
-        }
         setDialogConfirmationData({...dialogConfirmationData, id: productId, visible: true});
     }
     
@@ -78,6 +78,7 @@ export default function ProductListing() {
             productService.deleteById(productId)
                 .then(() => {
                     setProducts([]);
+                    setReload(r => r + 1);
                     setQueryParams({...queryParams, page: 0})
                 })
                 .catch(error => {
