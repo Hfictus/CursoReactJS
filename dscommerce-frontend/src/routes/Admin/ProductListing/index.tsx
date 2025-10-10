@@ -40,8 +40,6 @@ export default function ProductListing() {
         name: ""
     });
     
-    const [newRequest, setNewRequest] = useState<boolean>(true);
-
     function handleSearch(searchText: string) {
         setProducts([]);
         setQueryParams( {...queryParams, page: 0, name: searchText} );
@@ -54,8 +52,9 @@ export default function ProductListing() {
                 setProducts(products.concat(nextPage));
                 setIsLastPage(response.data.last);
             });
-    }, [ queryParams.page, newRequest ]);
-        
+    }, [ queryParams.page ]);
+    
+    
     function handleNextPageClick() {
         console.log("Em handleNextPageClick:\n");
         console.log("valor em queryParams.page antes de clicar em Carregar mais: " + queryParams.page + "\n");
@@ -68,6 +67,9 @@ export default function ProductListing() {
     }
 
     function handleDeleteClick(productId: number) {
+        if(queryParams.page === 0) {
+            setQueryParams({...queryParams, page: -1 });
+        }
         setDialogConfirmationData({...dialogConfirmationData, id: productId, visible: true});
     }
     
@@ -77,8 +79,6 @@ export default function ProductListing() {
                 .then(() => {
                     setProducts([]);
                     setQueryParams({...queryParams, page: 0})
-                    if(newRequest === true) {setNewRequest(false)}
-                    if(newRequest === false) {setNewRequest(true)}
                 })
                 .catch(error => {
                     setDialogInfoData({
