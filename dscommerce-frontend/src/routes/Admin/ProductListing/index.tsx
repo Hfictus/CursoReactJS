@@ -27,9 +27,9 @@ export default function ProductListing() {
 
     const [dialogConfirmationData, setDialogConfirmationData] = useState({
         visible: false,
+        id: 0,
         message: "Tem certeza?"
     });
-
 
     const [isLastPage, setIsLastPage] = useState(false);
 
@@ -39,7 +39,7 @@ export default function ProductListing() {
         page: 0,
         name: ""
     });
-
+    
     function handleSearch(searchText: string) {
         setProducts([]);
         setQueryParams( {...queryParams, page: 0, name: searchText} );
@@ -52,25 +52,41 @@ export default function ProductListing() {
                 setProducts(products.concat(nextPage));
                 setIsLastPage(response.data.last);
             });
-    }, [ queryParams.page ]);
-
+    }, [ queryParams ]);
+    
+    
     function handleNextPageClick() {
+        console.log("Em handleNextPageClick:\n");
+        console.log("valor em queryParams.page antes de clicar em Carregar mais: " + queryParams.page + "\n");
         setQueryParams( {...queryParams, page: queryParams.page + 1} );
+        console.log("valor em queryParams.page depois de clicar em Carregar mais: ", queryParams.page);
     }
     
     function handleDialogInfoClose() {
         setDialogInfoData({...dialogInfoData, visible: false});
     }
 
-    function handleDeleteClick() {
-        setDialogConfirmationData({...dialogConfirmationData, visible: true});        
+    function handleDeleteClick(productId: number) {
+        setDialogConfirmationData({...dialogConfirmationData, id: productId, visible: true});
     }
-
-    function handleDialogConfirmationAnswer(answer: boolean) {
-        console.log("Resposta: ", answer);
-        setDialogConfirmationData({...dialogConfirmationData, visible: false});        
+    
+    function handleDialogConfirmationAnswer(answer: boolean, productId: number) {
+        if(answer) {
+            productService.deleteById(productId)
+                .then(() => {
+                    setProducts([]);
+                    setQueryParams({...queryParams, page: 0})
+                })
+                .catch(error => {
+                    setDialogInfoData({
+                        visible: true,
+                        message: error.response.data.error
+                    });
+                });
+        }
+        setDialogConfirmationData({...dialogConfirmationData, visible: false});
     }
-
+  
     return(
         <main>
             <section id="product-listing-section" className="dsc-container">
@@ -102,7 +118,7 @@ export default function ProductListing() {
                                     <td className="dsc-tb768">R$ {product.price.toFixed(2)}</td>
                                     <td className="dsc-txt-left">{product.name}</td>
                                     <td><img className="dsc-product-listing-btn" src={editIcon} alt="Editar"/></td>
-                                    <td><img onClick={handleDeleteClick} className="dsc-product-listing-btn" src={deleteIcon} alt="Deletar"/></td>
+                                    <td><img onClick={() => handleDeleteClick(product.id)} className="dsc-product-listing-btn" src={deleteIcon} alt="Deletar"/></td>
                                 </tr>
                             ))
                         }
@@ -121,6 +137,7 @@ export default function ProductListing() {
             {
                 dialogConfirmationData.visible &&
                 <DialogConfirmation
+                    id={dialogConfirmationData.id}
                     message={dialogConfirmationData.message}
                     onDialogAnswer={handleDialogConfirmationAnswer}
                 />
