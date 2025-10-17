@@ -4,19 +4,19 @@
 
 
 import { useContext, useState } from "react";
-//import { CredentialsDTO } from "../../../models/auth";
 import "./styles.css";
 import * as authService from "../../../services/auth-service"
 import { useNavigate } from "react-router-dom";
 import { ContextToken } from "../../../utils/context-token";
 import FormInput from "../../../components/FormInput";
+import { TypesLoginFormDTO } from "../../../models/types-login-form";
 
 export default function Login() {
     
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<any>({ //CredentialsDTO
+    const [formData, setFormData] = useState<TypesLoginFormDTO>({
         username: {
             value: "",
             id: "username",
@@ -56,7 +56,7 @@ export default function Login() {
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         const value = event.target.value;
-        const name = event.target.name;
+        const name = event.target.name as keyof TypesLoginFormDTO;
         setFormData({...formData, [name]: {...formData[name], value: value}});
     }
     

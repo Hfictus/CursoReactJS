@@ -2,9 +2,18 @@
 
 
 
-export default function FormInput(props: any) {
+import { InputHTMLAttributes } from "react";
 
-    const { validation, ...inputProps } = props;
+
+export default function FormInput(
+    //tipagem de prop inline
+    props: InputHTMLAttributes<HTMLInputElement> & {
+        validation?: (value: string) => boolean;
+        message?: string;
+    }
+) {
+            
+    const { validation: _validation, message: _message, ...inputProps } = props;
 
     return(
         <input { ...inputProps } />
