@@ -4,7 +4,6 @@
 
 import { InputHTMLAttributes } from "react";
 
-
 export default function FormInput(
     //tipagem de prop inline
     props: InputHTMLAttributes<HTMLInputElement> & {

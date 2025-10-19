@@ -9,20 +9,22 @@ import * as authService from "../../../services/auth-service"
 import { useNavigate } from "react-router-dom";
 import { ContextToken } from "../../../utils/context-token";
 import FormInput from "../../../components/FormInput";
-import { TypesLoginFormDTO } from "../../../models/types-login-form";
+import { LoginFormDTO } from "../../../models/types-login-form";
+import * as forms from "../../../utils/forms";
 
 export default function Login() {
     
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<TypesLoginFormDTO>({
+    const [formData, setFormData] = useState<LoginFormDTO>({
         username: {
             value: "",
             id: "username",
             name: "username",
             type: "text",
             placeholder: "Emails",
+            autoComplete: "username",
             validation: function (value: string) {
                 return /^[a-zA-Z0-9.!#$%&'*+/=?^_'{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value.toLowerCase());
             },
@@ -33,7 +35,8 @@ export default function Login() {
             id: "password",
             name: "password",
             type: "password",
-            placeholder: "Senha"
+            placeholder: "Senha",
+            autoComplete: "current-password"
         }
     });
 
@@ -56,8 +59,9 @@ export default function Login() {
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         const value = event.target.value;
-        const name = event.target.name as keyof TypesLoginFormDTO;
-        setFormData({...formData, [name]: {...formData[name], value: value}});
+        const name = event.target.name as keyof LoginFormDTO;
+        setFormData(forms.update(formData, name, value));
+        //ou setFormData(forms.update(formData, event.target.name as keyof TypesLoginFormDTO, event.target.value));
     }
     
     return(
