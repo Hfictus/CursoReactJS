@@ -59,10 +59,7 @@ export default function Login() {
     }
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-        const value = event.target.value;
-        const name = event.target.name as keyof LoginFormDTO;
-        setFormData(forms.update(formData, name, value));
-        //ou setFormData(forms.update(formData, event.target.name as keyof TypesLoginFormDTO, event.target.value));
+	setFormData(forms.update(formData, event.target.name as keyof TypesLoginFormDTO, event.target.value));
     }
     
     return(
