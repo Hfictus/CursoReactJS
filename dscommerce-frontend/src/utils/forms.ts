@@ -1,6 +1,6 @@
 
 
-import { FormValues, InputField } from "../models/types-forms";
+import { FormValues, InputField } from "../models/types-forms-fields";
 
 export function update<T extends Record<string, { value: string }>>(
     inputs: T,
