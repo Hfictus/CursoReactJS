@@ -36,3 +36,26 @@ export function toValues(inputs: any) {
 Meu VSCode reclamou pelo uso do var, recomendando let ou const
 (não configurei nada sobre o var no eslint.config.js)
 */
+
+
+export function updateAll<T extends Record<string, InputField>>(
+    inputs: T,
+    newValues: T
+): T {
+    const newInputs: Partial<T> = {};
+    for(const name in inputs) {
+        newInputs[name] = {...inputs[name], value: newValues[name]};
+    }
+    console.log(newInputs);
+    return newInputs as T;
+}
+
+/*Código do professor:
+export function updateAll(inputs: any, newValues: any) {
+    const newInputs: any = {};
+    for(var name in inputs) {
+        newInputs[name] = {...inputs[name], value: newValues[name]};
+    }
+    return newInputs;
+}
+*/

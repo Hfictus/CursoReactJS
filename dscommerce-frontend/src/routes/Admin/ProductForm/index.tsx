@@ -3,15 +3,21 @@
 
 
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./styles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AdminFormDTO } from "../../../models/admin-form";
 import FormInput from "../../../components/FormInput";
 import * as forms from "../../../utils/forms"
+import * as productService from "../../../services/product-service";
+
 
 export default function ProductForm() {
     
+    const params = useParams();
+
+    const isEditing = params.productId !== "create";
+
     const [formData, setFormData] = useState<AdminFormDTO>({
         name: {
             value: "",
@@ -39,6 +45,16 @@ export default function ProductForm() {
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
 	    setFormData(forms.update(formData, event.target.name  as keyof AdminFormDTO, event.target.value));
     }
+
+    useEffect(() => {
+        if(isEditing) {
+            productService.findById(Number(params.productId))
+            .then(response => {
+                setFormData(forms.updateAll(formData, response.data));
+            });
+        }
+    },[]);
+
 
     return(
         <main>

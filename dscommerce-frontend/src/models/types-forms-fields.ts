@@ -7,7 +7,6 @@ export type FormValues<T extends Record<string, InputField>> = {
   [K in keyof T]: string;
 }
 
-
 export type InputField = {
   value: string;
   id: string;
