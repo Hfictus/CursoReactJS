@@ -4,18 +4,19 @@
 
 
 export type FormValues<T extends Record<string, InputField>> = {
-  [K in keyof T]: string;
+  [K in keyof T]: string | number;
 }
 
 export type InputField = {
-  value: string;
+  value: string | number;
   id: string;
   name: string;
   type: string;
   placeholder: string;
   autoComplete?: string;
-  validation?: (value: string) => boolean;
+  validation?: (value: string | number) => boolean;
   message?: string;
+  invalid?: string;
 };
 
 /*Ver se será usado

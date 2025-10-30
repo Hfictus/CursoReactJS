@@ -42,14 +42,12 @@ export function updateAll<T extends Record<string, InputField>>(
     inputs: T,
     newValues: T
 ): T {
-    const newInputs: Partial<T> = {};
+    const newInputs = {} as T;
     for(const name in inputs) {
         newInputs[name] = {...inputs[name], value: newValues[name]};
     }
-    console.log(newInputs);
-    return newInputs as T;
+    return newInputs;
 }
-
 /*Código do professor:
 export function updateAll(inputs: any, newValues: any) {
     const newInputs: any = {};
@@ -57,5 +55,28 @@ export function updateAll(inputs: any, newValues: any) {
         newInputs[name] = {...inputs[name], value: newValues[name]};
     }
     return newInputs;
+}
+*/
+
+
+
+export function validate<T extends Record<string, InputField>>(
+    inputs: T,
+    name: string
+): T {
+    if(!inputs[name].validation) {
+        return inputs;
+    }
+    const isInvalid = !inputs[name].validation(inputs[name].value);
+    return {...inputs, [name]: {...inputs[name], invalid: isInvalid.toString()}};
+}
+
+/*Código do professor:
+export function validate(inputs: any, name: string) {
+    if(!inputs[name].validation) {
+        return inputs;
+    }
+    const isInvalid = !inputs[name].validation(inputs[name].value);
+    return {...inputs, [name]: {...inputs[name], invalid: isInvalid.toString()}};
 }
 */

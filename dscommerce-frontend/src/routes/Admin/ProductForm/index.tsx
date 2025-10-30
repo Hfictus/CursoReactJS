@@ -27,11 +27,15 @@ export default function ProductForm() {
             placeholder: "Nome",
         },
         price: {
-            value: "",
+            value: 0,
             id: "price",
             name: "price",
             type: "number",
             placeholder: "Preço",
+            validation: function(value: unknown) {
+                return Number(value) > 0;
+            },
+            message: "Favor informar um valor positivo",
         },
         imgUrl: {
             value: "",
@@ -50,10 +54,14 @@ export default function ProductForm() {
         if(isEditing) {
             productService.findById(Number(params.productId))
             .then(response => {
-                setFormData(forms.updateAll(formData, response.data));
+                const updateFormData = forms.updateAll(formData, response.data);
+                const validatedFormData = forms.validate(updateFormData, "price");
+                setFormData(validatedFormData);
+                console.log("validateFormData: ", validatedFormData);
+
             });
         }
-    },[]);
+    }, []);
 
 
     return(

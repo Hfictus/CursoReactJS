@@ -19,7 +19,6 @@ export default function Confirmation() {
     useEffect(() => {
         orderService.findByIdRequest(Number(params.orderId))
             .then(response => {
-                console.log("Dados do pedido: ", response.data)
                 setOrder(response.data);
             })
     }, [params.orderId]);

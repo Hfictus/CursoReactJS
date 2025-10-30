@@ -60,10 +60,7 @@ export default function ProductListing() {
     
     
     function handleNextPageClick() {
-        console.log("Em handleNextPageClick:\n");
-        console.log("valor em queryParams.page antes de clicar em Carregar mais: " + queryParams.page + "\n");
         setQueryParams( {...queryParams, page: queryParams.page + 1} );
-        console.log("valor em queryParams.page depois de clicar em Carregar mais: ", queryParams.page);
     }
     
     function handleDialogInfoClose() {
