@@ -10,12 +10,30 @@ export default function FormInput(
         validation?: (value: string) => boolean;
         message?: string;
         invalid?: string;
+        dirty?: string;
+        onTurnDirty: (name: string) => void;
     }
 ) {
             
-    const { validation: _validation, invalid: invalid, ...inputProps } = props;
+    const {
+        validation: _validation,
+        invalid: invalid = "false",
+        dirty: dirty = "false",
+        onTurnDirty: onTurnDirty,
+        ...inputProps 
+    } = props;
+
+    function handleBlur() {
+        const name = props.name as string;
+        onTurnDirty(name);
+    }
 
     return(
-        <input { ...inputProps } data-invalid={invalid} />
+        <input
+            { ...inputProps }
+            onBlur={handleBlur}
+            data-invalid={invalid}
+            data-dirty={dirty}
+        />
     );
 }

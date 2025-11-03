@@ -15,7 +15,6 @@ export function update(inputs: any, name: string, newValue: any) {
 }
 */
 
-
 export function toValues<T extends Record<string, InputField>>(
     inputs: T
 ): FormValues<T>  {
@@ -37,7 +36,6 @@ Meu VSCode reclamou pelo uso do var, recomendando let ou const
 (não configurei nada sobre o var no eslint.config.js)
 */
 
-
 export function updateAll<T extends Record<string, InputField>>(
     inputs: T,
     newValues: T
@@ -58,8 +56,6 @@ export function updateAll(inputs: any, newValues: any) {
 }
 */
 
-
-
 export function validate<T extends Record<string, InputField>>(
     inputs: T,
     name: string
@@ -70,7 +66,6 @@ export function validate<T extends Record<string, InputField>>(
     const isInvalid = !inputs[name].validation(inputs[name].value);
     return {...inputs, [name]: {...inputs[name], invalid: isInvalid.toString()}};
 }
-
 /*Código do professor:
 export function validate(inputs: any, name: string) {
     if(!inputs[name].validation) {
@@ -78,5 +73,46 @@ export function validate(inputs: any, name: string) {
     }
     const isInvalid = !inputs[name].validation(inputs[name].value);
     return {...inputs, [name]: {...inputs[name], invalid: isInvalid.toString()}};
+}
+*/
+
+export function toDirty<T extends Record<string, InputField>>(
+    inputs: T,
+    name: string
+): T {
+    return { ...inputs, [name]: { ...inputs[name], dirty: "true"} };
+}
+/*Código do professor:
+export function toDirty(inputs: any, name: string) {
+    return { ...inputs, [name]: { ...inputs[name], dirty: "true"} };
+}
+*/
+
+export function updateAndValidate<T extends Record<string, InputField>>(
+    inputs: T,
+    name: string,
+    newValue: string
+): T {
+    const dataUpdate = update(inputs, name, newValue);
+    return validate(dataUpdate, name);
+}
+/*Código do professor:
+export function updateAndValidate(inputs: any, name: string, newValue: any) {
+    const dataUpdate = update(inputs, name, newValue);
+    return validate(dataUpdate, name);
+}
+*/
+
+export function dirtyAndValidate<T extends Record<string, InputField>>(
+    inputs: T,
+    name: string
+): T {
+    const dataDirty = toDirty(inputs, name);
+    return validate(dataDirty, name);
+}
+/*Código do professor:
+export function dirtyAndValidate(inputs: any, name: string) {
+    const dataDirty = toDirty(inputs, name);
+    return validate(dataDirty, name);
 }
 */
