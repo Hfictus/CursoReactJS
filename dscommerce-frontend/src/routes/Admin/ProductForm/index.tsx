@@ -28,7 +28,7 @@ export default function ProductForm() {
             type: "text",
             placeholder: "Nome",
             validation: function(value: string) {
-                return value.length >= 3 && value.length <= 80;
+                return /^.{3,80}$/.test(value);
             },
             message: "Favor informar um nome de 3 a 80 caracteres",
         },
@@ -39,7 +39,7 @@ export default function ProductForm() {
             type: "number",
             placeholder: "Preço",
             validation: function(value: unknown) {
-                return /^.{3,80}$/.test(value as string);
+                return Number(value) > 0;
             },
             message: "Favor informar um valor positivo",
         },
