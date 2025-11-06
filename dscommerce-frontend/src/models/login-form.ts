@@ -1,9 +1,9 @@
 
 
 
-import { InputField } from "./types-forms-fields";
+import { DataInputFields } from "./types-forms-fields";
 
 export type LoginFormDTO = {
-    username: InputField;
-    password: InputField;
+    username: DataInputFields;
+    password: DataInputFields;
 }

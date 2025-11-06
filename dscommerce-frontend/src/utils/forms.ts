@@ -1,6 +1,6 @@
 
 
-import { FormValues, InputField } from "../models/types-forms-fields";
+import { FormValues, DataInputFields } from "../models/types-forms-fields";
 
 export function update<T extends Record<string, { value: string }>>(
     inputs: T,
@@ -15,7 +15,7 @@ export function update(inputs: any, name: string, newValue: any) {
 }
 */
 
-export function toValues<T extends Record<string, InputField>>(
+export function toValues<T extends Record<string, DataInputFields>>(
     inputs: T
 ): FormValues<T>  {
     const data = {} as FormValues<T>;
@@ -36,7 +36,7 @@ Meu VSCode reclamou pelo uso do var, recomendando let ou const
 (não configurei nada sobre o var no eslint.config.js)
 */
 
-export function updateAll<T extends Record<string, InputField>>(
+export function updateAll<T extends Record<string, DataInputFields>>(
     inputs: T,
     newValues: T
 ): T {
@@ -56,7 +56,7 @@ export function updateAll(inputs: any, newValues: any) {
 }
 */
 
-export function validate<T extends Record<string, InputField>>(
+export function validate<T extends Record<string, DataInputFields>>(
     inputs: T,
     name: string
 ): T {
@@ -76,7 +76,7 @@ export function validate(inputs: any, name: string) {
 }
 */
 
-export function toDirty<T extends Record<string, InputField>>(
+export function toDirty<T extends Record<string, DataInputFields>>(
     inputs: T,
     name: string
 ): T {
@@ -88,7 +88,7 @@ export function toDirty(inputs: any, name: string) {
 }
 */
 
-export function updateAndValidate<T extends Record<string, InputField>>(
+export function updateAndValidate<T extends Record<string, DataInputFields>>(
     inputs: T,
     name: string,
     newValue: string
@@ -103,7 +103,7 @@ export function updateAndValidate(inputs: any, name: string, newValue: any) {
 }
 */
 
-export function dirtyAndValidate<T extends Record<string, InputField>>(
+export function dirtyAndValidate<T extends Record<string, DataInputFields>>(
     inputs: T,
     name: string
 ): T {

@@ -3,11 +3,11 @@
 
 
 
-export type FormValues<T extends Record<string, InputField>> = {
+export type FormValues<T extends Record<string, DataInputFields>> = {
   [K in keyof T]: string;
 }
 
-export type InputField = {
+export type DataInputFields = {
   value: string;
   id: string;
   name: string;
@@ -17,6 +17,7 @@ export type InputField = {
   validation?: (value: string) => boolean;
   message?: string;
   invalid?: string;
+  dirty?: string;
 };
 
 /*Ver se será usado

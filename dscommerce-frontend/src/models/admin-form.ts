@@ -1,10 +1,11 @@
 
 
 
-import { InputField } from "./types-forms-fields";
+import { DataInputFields } from "./types-forms-fields";
 
 export type AdminFormDTO = {
-    name: InputField;
-    price: InputField;
-    imgUrl: InputField;
+    name: DataInputFields;
+    price: DataInputFields;
+    imgUrl: DataInputFields;
+    description: DataInputFields;
 }
