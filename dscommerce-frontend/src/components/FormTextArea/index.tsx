@@ -5,7 +5,7 @@ import {  TextareaHTMLAttributes } from "react";
 
 export default function FormTextArea(
     props: TextareaHTMLAttributes<HTMLTextAreaElement> & {
-        validation?: (value: string) => boolean;
+        validation?: (value: unknown) => boolean;
         message?: string;
         invalid?: string;
         dirty?: string;

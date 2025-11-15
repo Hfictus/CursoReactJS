@@ -1,32 +1,28 @@
 
 
 
+import { Props as SelectProps } from "react-select";
 
 
 export type FormValues<T extends Record<string, DataInputFields>> = {
-  [K in keyof T]: string;
+  [K in keyof T]: string | number | [];
 }
 
 export type DataInputFields = {
-  value: string;
+  value: string | number | [];
   id: string;
   name: string;
-  type: string;
+  type?: string;
   placeholder: string;
   autoComplete?: string;
-  validation?: (value: string) => boolean;
+  validation?: (value: unknown | unknown[]) => boolean;
   message?: string;
   invalid?: string;
   dirty?: string;
 };
 
-/*Ver se será usado
-export type SelectField = {
-    options?: SelectOption[];
-}
 
-type SelectOption = {
-  value: string;
-  label: string;
-};
-*/
+export type FormSelectProps<
+  T,
+  IsMulti extends boolean = false
+> = SelectProps<T, IsMulti>;

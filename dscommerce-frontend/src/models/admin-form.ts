@@ -8,4 +8,5 @@ export type AdminFormDTO = {
     price: DataInputFields;
     imgUrl: DataInputFields;
     description: DataInputFields;
+    categories: DataInputFields;
 }

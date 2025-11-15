@@ -8,14 +8,18 @@ import "./styles.css";
 import React from "react";
 import { useEffect, useState } from "react";
 import { AdminFormDTO } from "../../../models/admin-form";
-import FormInput from "../../../components/FormInput";
 import * as forms from "../../../utils/forms"
 import * as productService from "../../../services/product-service";
+import { CategoryDTO } from "../../../models/category";
+import * as categoryService from "../../../services/category-service";
+import FormSelect from "../../../components/FormSelect";
+import FormInput from "../../../components/FormInput";
 import FormTextArea from "../../../components/FormTextArea";
-
 
 export default function ProductForm() {
     
+    const [categories, setCategories] = useState<CategoryDTO[]>([]);
+
     const params = useParams();
 
     const isEditing = params.productId !== "create";
@@ -27,8 +31,8 @@ export default function ProductForm() {
             name: "name",
             type: "text",
             placeholder: "Nome",
-            validation: function(value: string) {
-                return /^.{3,80}$/.test(value);
+            validation: function(value: unknown) {
+                return /^.{3,80}$/.test(value as string);
             },
             message: "Favor informar um nome de 3 a 80 caracteres",
         },
@@ -56,17 +60,28 @@ export default function ProductForm() {
             name: "description",
             type: "text",
             placeholder: "Descrição",
-            validation: function(value: string) {
-                return /^.{10,}$/.test(value);
+            validation: function(value: unknown) {
+                return /^.{10,}$/.test(value as string);
             },
             message: "Necessário mínimo de 10 caracteres"
+        },
+        categories: {
+            value: [],
+            id: "categories",
+            name: "categories",
+            placeholder: "Categorias",
+            validation: function(value: unknown) {
+                const v = value as CategoryDTO[];
+                return v.length > 0;
+            },
+            message: "Escolha ao menos uma categoria"
+
         }
     })
     
     function handleInputChange(
         event: React.ChangeEvent<HTMLInputElement>
                 | React.ChangeEvent<HTMLTextAreaElement>
-
     ) {
         setFormData(
             forms.updateAndValidate(
@@ -82,6 +97,13 @@ export default function ProductForm() {
     }
 
     useEffect(() => {
+        categoryService.findAllRequest()
+            .then( response => {
+                setCategories(response.data);
+            })
+    }, []);
+
+    useEffect(() => {
         if(isEditing) {
             productService.findById(Number(params.productId))
             .then(response => {
@@ -90,7 +112,7 @@ export default function ProductForm() {
             });
         }
     }, []);
-    
+
     return(
         <main>
             <section id="product-form-section" className="dsc-container">
@@ -123,6 +145,22 @@ export default function ProductForm() {
                                     onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                 />
+                            </div>
+                            <div>
+                                <FormSelect
+                                    { ...formData.categories }
+                                    className="dsc-form-control"
+                                    options={categories}
+                                    onChange={(obj: unknown) => {
+                                        const newFormData = forms.updateAndValidate(formData, "categories", obj as string)
+                                        setFormData(newFormData)
+                                    }}
+                                    onTurnDirty={handleTurnDirty}
+                                    isMulti
+                                    getOptionLabel={(obj: unknown) => (obj as CategoryDTO).name}
+                                    getOptionValue={(obj: unknown) => String((obj as CategoryDTO).id)}
+                                />
+                                <div className="dsc-form-error">{formData.categories.message}</div>
                             </div>
                             <div>
                                 <FormTextArea 

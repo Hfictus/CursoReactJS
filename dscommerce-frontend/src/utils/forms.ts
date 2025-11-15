@@ -2,7 +2,7 @@
 
 import { FormValues, DataInputFields } from "../models/types-forms-fields";
 
-export function update<T extends Record<string, { value: string }>>(
+export function update<T extends Record<string, DataInputFields>>(
     inputs: T,
     name: keyof T,
     newValue: string
@@ -95,6 +95,7 @@ export function updateAndValidate<T extends Record<string, DataInputFields>>(
 ): T {
     const dataUpdate = update(inputs, name, newValue);
     return validate(dataUpdate, name);
+        
 }
 /*Código do professor:
 export function updateAndValidate(inputs: any, name: string, newValue: any) {
