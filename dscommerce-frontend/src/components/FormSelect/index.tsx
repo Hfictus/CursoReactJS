@@ -3,9 +3,8 @@
 
 
 import Select from "react-select";
-import { DataInputFields } from "../../models/types-forms-fields";
+import { DataInputFields, FormSelectProps } from "../../models/types-forms-fields";
 import { CategoryDTO } from "../../models/category";
-import { FormSelectProps } from "../../models/types-forms-fields";
 
 export default function FormSelect(
     props: Omit<DataInputFields, '_validation'> & {
@@ -16,6 +15,7 @@ export default function FormSelect(
         isMulti?: boolean;
         getOptionLabel?: (option: CategoryDTO) => string;
         getOptionValue?: (option: CategoryDTO) => string;
+        styles?: FormSelectProps<CategoryDTO, boolean>['styles'];
     }
 
 ) {
