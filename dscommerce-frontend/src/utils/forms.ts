@@ -76,6 +76,36 @@ export function validate(inputs: any, name: string) {
 }
 */
 
+
+export function validateAll<T extends Record<string, DataInputFields>>(
+    inputs: T
+): T {
+    const newInputs = {} as T;
+    for(const name in inputs) {
+        if(inputs[name].validation) {
+            const isInvalid = !inputs[name].validation(inputs[name].value);
+            newInputs[name] = { ...inputs[name], invalid: isInvalid.toString() };
+        }else {
+            newInputs[name] = { ...inputs[name] };
+        }
+    }
+    return newInputs;
+}
+/*Código do professor para validateAll:
+export function validateAll(inputs: any) {
+    const newInputs: any = {};
+    for(var name in inputs) {
+        if(inputs[name].validation) {
+            const isInvalid = !inputs[name].validation(inputs[name].value);
+            newInputs[name] = { ...inputs[name], invalid: isInvalid.toString() };
+        }else {
+            newInputs[name] = { ...inputs[name] };
+        }
+    }
+    return newInputs;
+}
+*/
+
 export function toDirty<T extends Record<string, DataInputFields>>(
     inputs: T,
     name: string
@@ -87,6 +117,26 @@ export function toDirty(inputs: any, name: string) {
     return { ...inputs, [name]: { ...inputs[name], dirty: "true"} };
 }
 */
+
+export function toDirtyAll<T extends Record<string, DataInputFields>>(
+    inputs: T
+): T {
+    const newInputs = {} as T;
+    for(const name in inputs) {
+        newInputs[name] = { ...inputs[name], dirty: "true" };
+    }
+    return newInputs;
+}
+/*Código do professor para toDirtyAll:
+export function toDirtyAll(inputs: any) {
+    const newInputs: any = {};
+    for(var name in inputs) {
+        newInputs[name] = { ...inputs[name], dirty: "true" };
+    }
+    return newInputs;
+}
+*/
+
 
 export function updateAndValidate<T extends Record<string, DataInputFields>>(
     inputs: T,
@@ -117,3 +167,38 @@ export function dirtyAndValidate(inputs: any, name: string) {
     return validate(dataDirty, name);
 }
 */
+
+
+export function dirtyAndValidateAll<T extends Record<string, DataInputFields>>(
+    inputs: T
+): T {
+    return validateAll(toDirtyAll(inputs));
+}
+/*Função do professor para dirtyAndValidateAll:
+export function dirtyAndValidateAll(inputs: any) {
+    return validateAll(toDirtyAll(inputs));
+}
+*/
+
+
+export function hasAnyInvalid<T extends Record<string, DataInputFields>>(
+    inputs: T
+): boolean {
+    for(const name in inputs) {
+        if(inputs[name].dirty === "true" && inputs[name].invalid === "true") {
+            return true;
+        }
+    }
+    return false;
+}
+/*Função do professor para hasAnyInvalid:
+export function hasAnyInvalid(inputs: any) {
+    for(var name in inputs) {
+        if(inputs[name].dirty === "true" && inputs[name].invalid === "true") {
+            return true;
+        }
+    }
+    return false;
+}
+*/
+
