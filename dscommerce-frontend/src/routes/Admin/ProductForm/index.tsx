@@ -3,7 +3,7 @@
 
 
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./styles.css";
 import React from "react";
 import { useEffect, useState } from "react";
@@ -16,6 +16,7 @@ import FormSelect from "../../../components/FormSelect";
 import FormInput from "../../../components/FormInput";
 import FormTextArea from "../../../components/FormTextArea";
 import { selectStyles } from "../../../utils/select";
+import { ProductDTO } from "../../../models/product";
 
 export default function ProductForm() {
     
@@ -23,6 +24,8 @@ export default function ProductForm() {
 
     const params = useParams();
 
+    const navigate = useNavigate();
+    
     const isEditing = params.productId !== "create";
 
     const [formData, setFormData] = useState<AdminFormDTO>({
@@ -123,7 +126,17 @@ export default function ProductForm() {
             return;
         }
 
-        //console.log(forms.toValues(formData));
+        const requestBody = (forms.toValues(formData))  as ProductDTO;
+        if(isEditing) {
+            requestBody.id = Number(params.productId);
+        }
+
+        productService.updateRequest(requestBody)
+            .then(() => {
+                navigate("/admin/products");
+            });
+
+        console.log(requestBody);
     }
 
     return(

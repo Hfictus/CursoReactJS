@@ -1,6 +1,7 @@
 
 
 import { FormValues, DataInputFields } from "../models/types-forms-fields";
+import { ProductDTO } from "../models/product";
 
 export function update<T extends Record<string, DataInputFields>>(
     inputs: T,
@@ -17,11 +18,16 @@ export function update(inputs: any, name: string, newValue: any) {
 
 export function toValues<T extends Record<string, DataInputFields>>(
     inputs: T
-): FormValues<T>  {
-    const data = {} as FormValues<T>;
-    for(const name in inputs){
-        data[name as keyof T] = inputs[name].value;
-    }
+): FormValues<T> | ProductDTO  {
+    let data = {} as FormValues<T> | ProductDTO;
+    if(inputs.id !== undefined) {
+        data = {} as ProductDTO;
+    }else {
+        data = {} as FormValues<T>;
+        for(const name in inputs){
+            data[name as keyof T] = inputs[name].value;
+        }
+    };
     return data;
 }
 /*Código do professor para toValues:
@@ -75,7 +81,6 @@ export function validate(inputs: any, name: string) {
     return {...inputs, [name]: {...inputs[name], invalid: isInvalid.toString()}};
 }
 */
-
 
 export function validateAll<T extends Record<string, DataInputFields>>(
     inputs: T
@@ -137,7 +142,6 @@ export function toDirtyAll(inputs: any) {
 }
 */
 
-
 export function updateAndValidate<T extends Record<string, DataInputFields>>(
     inputs: T,
     name: string,
@@ -168,7 +172,6 @@ export function dirtyAndValidate(inputs: any, name: string) {
 }
 */
 
-
 export function dirtyAndValidateAll<T extends Record<string, DataInputFields>>(
     inputs: T
 ): T {
@@ -179,7 +182,6 @@ export function dirtyAndValidateAll(inputs: any) {
     return validateAll(toDirtyAll(inputs));
 }
 */
-
 
 export function hasAnyInvalid<T extends Record<string, DataInputFields>>(
     inputs: T
