@@ -131,12 +131,23 @@ export default function ProductForm() {
             requestBody.id = Number(params.productId);
         }
 
+        const request = isEditing
+            ? productService.updateRequest(requestBody)
+            : productService.insertRequest(requestBody);
+        request
+            .then(() => {
+                navigate("/admin/products");
+            })
+
+        /*
         productService.updateRequest(requestBody)
             .then(() => {
                 navigate("/admin/products");
             });
 
-        console.log(requestBody);
+        */
+        //console.log(requestBody);
+
     }
 
     return(
