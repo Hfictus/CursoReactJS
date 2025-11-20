@@ -138,16 +138,10 @@ export default function ProductForm() {
             .then(() => {
                 navigate("/admin/products");
             })
-
-        /*
-        productService.updateRequest(requestBody)
-            .then(() => {
-                navigate("/admin/products");
+            .catch(error => {
+                const newInputs = forms.setBackendErrors(formData, error.response.data.errors);
+                setFormData(newInputs);
             });
-
-        */
-        //console.log(requestBody);
-
     }
 
     return(

@@ -58,3 +58,4 @@ export function insertRequest(obj: ProductDTO) {
     }
     return requestBackend(config);
 }
+
