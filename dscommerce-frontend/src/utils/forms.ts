@@ -205,8 +205,11 @@ export function hasAnyInvalid(inputs: any) {
 */
 
 
-export function setBackendErrors(inputs: any, errors: any[]) {
-    const newInputs = { ...inputs };
+
+/*setBackendErrors modificado por mim: nos tipos
+export function setBackendErrors(inputs: unknown, errors: [{fieldName: string; message: string;}]) {
+    const newInputs = { ...inputs }
+    
     errors.forEach(item => {
         newInputs[item.fieldName].message = item.message;
         newInputs[item.fieldName].dirty = "true";
@@ -214,3 +217,31 @@ export function setBackendErrors(inputs: any, errors: any[]) {
     })
     return newInputs;
 }
+*/
+
+//setBackendErrors com tipos genéricos:
+export function setBackendErrors<T extends Record<string, DataInputFields>>(
+    inputs: T,
+    errors: [{fieldName: string; message: string;}]
+): T {
+    const newInputs = { ...inputs }
+    
+    errors.forEach(item => {
+        newInputs[item.fieldName].message = item.message;
+        newInputs[item.fieldName].dirty = "true";
+        newInputs[item.fieldName].invalid = "true";
+    })
+    return newInputs;
+}
+/*Função do professor:
+export function setBackendErrors(inputs: any, errors: any[]) {
+    const newInputs = { ...inputs }
+    
+    errors.forEach(item => {
+        newInputs[item.fieldName].message = item.message;
+        newInputs[item.fieldName].dirty = "true";
+        newInputs[item.fieldName].invalid = "true";
+    })
+    return newInputs;
+}
+*/
