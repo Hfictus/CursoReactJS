@@ -1,7 +1,7 @@
 
 
 import { FormValues, DataInputFields } from "../models/types-forms-fields";
-import { ProductDTO } from "../models/product";
+
 
 export function update<T extends Record<string, DataInputFields>>(
     inputs: T,
@@ -18,10 +18,10 @@ export function update(inputs: any, name: string, newValue: any) {
 
 export function toValues<T extends Record<string, DataInputFields>>(
     inputs: T
-): FormValues<T> | ProductDTO  {
-    let data = {} as FormValues<T> | ProductDTO;
+): FormValues<T> | T {
+    let data = {} as FormValues<T> | T;
     if(inputs.id !== undefined) {
-        data = {} as ProductDTO;
+        data = {} as T;
     }else {
         data = {} as FormValues<T>;
         for(const name in inputs){

@@ -126,7 +126,8 @@ export default function ProductForm() {
             return;
         }
 
-        const requestBody = (forms.toValues(formData))  as ProductDTO;
+        const requestBody = (forms.toValues(formData) as unknown) as ProductDTO;
+        
         if(isEditing) {
             requestBody.id = Number(params.productId);
         }
